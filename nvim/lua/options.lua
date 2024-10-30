@@ -25,3 +25,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
+
+vim.opt.swapfile = false
+
+vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }

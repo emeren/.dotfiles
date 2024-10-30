@@ -25,7 +25,7 @@ return {
       nvimtree = true,
       treesitter = true,
       neotree = true,
-      notify = true,
+      notify = false,
       mini = {
         enabled = true,
         indentscope_color = '',
@@ -48,7 +48,8 @@ return {
           ['<C-x>'] = 'cut_to_clipboard', -- Delete
           ['H'] = 'set_root',
           ['f'] = 'show_file_details', -- File details
-          ['h'] = 'parent_or_close',
+          ['l'] = 'open',
+          ['h'] = 'close_all_subnodes',
           ['n'] = { 'show_help', nowait = false, config = { title = 'Create new', prefix_key = 'n' } }, -- Mimic nnn dialog
           ['A'] = { 'add_directory', nowait = false },
           ['a'] = { 'add', nowait = false },
@@ -62,16 +63,6 @@ return {
           ['tt'] = { 'order_by_created', nowait = false },
           ['x'] = 'delete', -- Delete
         },
-      },
-    },
-    window = {
-      mappings = {
-        ['<C-l>'] = '',
-        ['<C-r>'] = 'rename', -- Rename
-        -- ["R"] = "copy", -- To mimic nnn duplicate (C-R)
-        ['h'] = 'close_node',
-        ['l'] = 'open',
-        ['h'] = 'close',
       },
     },
   },

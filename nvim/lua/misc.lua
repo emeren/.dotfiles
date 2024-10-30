@@ -25,3 +25,5 @@ vim.api.nvim_buf_set_extmark(0, vim.api.nvim_create_namespace 'padding', vim.fn.
   hl_mode = 'combine',
   priority = 10,
 }) ]]
+
+
