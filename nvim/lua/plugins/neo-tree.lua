@@ -2,8 +2,8 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 --
-vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true })
-vim.keymap.set('n', '<C-e>', ':Neotree toggle<CR>', { silent = true })
+vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { silent = true, desc = 'which_key_ignore' })
+vim.keymap.set('n', '<C-e>', ':Neotree toggle<CR>', { silent = true, desc = 'which_key_ignore' })
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
@@ -15,7 +15,7 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
+    { '\\', ':Neotree reveal<CR>', { desc = 'which_key_ignore' } },
   },
   opts = {
     close_if_last_window = true,
