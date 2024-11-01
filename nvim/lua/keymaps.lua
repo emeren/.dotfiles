@@ -13,7 +13,10 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 --
---
+
+-- Split screen
+vim.keymap.set('n', '<C-_>', ':vsplit<CR>', { noremap = true, silent = true })
+
 vim.keymap.set('n', '<C-o>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })

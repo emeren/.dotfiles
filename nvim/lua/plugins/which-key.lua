@@ -2,10 +2,11 @@ return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
   opts = {
+    trigger = { '<leader>', '<localleader>' },
     modes = {
       defet = {
         oppraters = {
-          d = true,
+          d = false,
         },
       },
     },
@@ -22,8 +23,8 @@ return {
   },
   config = function()
     local wk = require 'which-key'
-    wk.add {
 
+    wk.add {
       { '<leader>f', group = 'file' }, -- group
       { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find File', mode = 'n' },
       {
