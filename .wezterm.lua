@@ -1,7 +1,6 @@
 local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
-
 config.colors = {
 	foreground = "#CBE0F0",
 	background = "#010a12",
@@ -21,6 +20,7 @@ config.window_padding = {
 config.font = wezterm.font("JetBrains Mono")
 config.font_size = 14
 config.line_height = 1.55
+config.max_fps = 144
 
 config.enable_tab_bar = false
 

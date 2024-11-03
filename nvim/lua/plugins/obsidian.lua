@@ -13,6 +13,11 @@ return {
         path = '~/Notes',
       },
     },
+    daily_notes = {
+      folder = '/DailyNotes',
+      default_tags = { 'daily-notes' },
+      template = nil,
+    },
     templates = {
       folder = 'Templates',
       date_format = '%Y-%m-%d-%a',

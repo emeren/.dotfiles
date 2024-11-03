@@ -34,7 +34,7 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', 'c', '"_c', { noremap = true, desc = 'Cut without copying to clipboard' })
-vim.keymap.set('n', '<leader>w', '<cmd>bdelete<CR>', { desc = '[W] Close current buffer' })
+vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = '[X] Close current buffer' })
 
 -- Map Ctrl+/ to comment code
 vim.api.nvim_set_keymap('n', '<C->>', '<leader>gc', { noremap = true, silent = true })

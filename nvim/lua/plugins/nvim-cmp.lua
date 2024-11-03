@@ -17,9 +17,14 @@ return {
     'hrsh7th/nvim-cmp',
     config = function()
       local luasnip = require 'luasnip'
-
       local cmp = require 'cmp'
       require('luasnip.loaders.from_vscode').lazy_load {}
+
+      -- Custom function to check if the line is empty
+      local function is_empty_line()
+        local line = vim.api.nvim_get_current_line()
+        return line:match '^%s*$' ~= nil
+      end
 
       cmp.setup {
         snippet = {
@@ -36,7 +41,13 @@ return {
           ['<C-k>'] = cmp.mapping.select_prev_item(),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-Space>'] = cmp.mapping.complete {
+            config = {
+              sources = {
+                { name = 'nvim_lsp' },
+              },
+            },
+          },
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -71,12 +82,11 @@ return {
             end
           end, { 'i', 's' }),
         },
-        sources = cmp.config.sources({
+        sources = {
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
-        }, {
-          { name = 'buffer' },
-        }),
+          { name = 'cmdline' },
+        },
       }
     end,
   },

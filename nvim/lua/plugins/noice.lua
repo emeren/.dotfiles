@@ -128,6 +128,9 @@ return {
           win_options = { scrolloff = 6 },
           close = { keys = { 'q' } },
         },
+        notify = {
+          render = 'minimal',
+        },
       },
     }
     require('notify').setup {

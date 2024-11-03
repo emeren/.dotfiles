@@ -23,17 +23,13 @@ return {
       mason_lspconfig.setup {
         -- list of servers for mason to install
         ensure_installed = {
-          -- 'tsserver',
           'html',
           'css_variables',
           'tailwindcss',
           'svelte',
           'lua_ls',
-          'graphql',
           'emmet_ls',
           'prismals',
-          'pyright',
-          'jdtls',
         },
       }
 
@@ -47,15 +43,6 @@ return {
           'pylint',
           'eslint_d',
         },
-      }
-    end,
-  },
-  {
-    'jay-babu/mason-nvim-dap.nvim',
-    config = function()
-      -- ensure the java debug adapter is installed
-      require('mason-nvim-dap').setup {
-        ensure_installed = { 'java-debug-adapter', 'java-test' },
       }
     end,
   },
