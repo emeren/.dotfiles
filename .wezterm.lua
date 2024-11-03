@@ -1,16 +1,10 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- my coolnight colorscheme
 config.colors = {
 	foreground = "#CBE0F0",
-	background = "#011423",
-	cursor_bg = "#47FF9C",
-	cursor_border = "#47FF9C",
-	cursor_fg = "#011423",
+	background = "#010a12",
 	selection_bg = "#033259",
 	selection_fg = "#CBE0F0",
 	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
@@ -24,10 +18,9 @@ config.window_padding = {
 	bottom = 2,
 }
 
--- config.font = wezterm.font("")
+config.font = wezterm.font("JetBrains Mono")
 config.font_size = 14
-config.line_height = 1.50
--- config.disable_default_key_bindings = true
+config.line_height = 1.55
 
 config.enable_tab_bar = false
 

@@ -12,10 +12,10 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
---
+---
 
 -- Split screen
-vim.keymap.set('n', '<C-_>', ':vsplit<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-]>', ':vsplit<CR>', { noremap = false, silent = false })
 
 vim.keymap.set('n', '<C-o>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 
@@ -45,3 +45,9 @@ vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true 
 
 -- Map Ctrl+W to close buffer
 vim.api.nvim_set_keymap('n', '<C-w>', ':bwipeout<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_create_user_command('W', 'w', {})
+
+vim.api.nvim_create_user_command('Q', 'q', {})
+vim.api.nvim_create_user_command('WQ', 'wq', {})
+vim.api.nvim_create_user_command('Wq', 'wq', {})

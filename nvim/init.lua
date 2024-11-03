@@ -36,6 +36,8 @@ require('lazy').setup({
     opts = { signs = false },
   },
   { 'mbbill/undotree' },
+  require 'plugins.obsidian',
+  require 'theme',
   require 'plugins.git',
   require 'plugins.ai',
   require 'plugins.mason',
@@ -46,11 +48,12 @@ require('lazy').setup({
   require 'plugins.nvim-treesitter',
   require 'plugins.neo-tree',
   require 'plugins.mini',
-  require 'theme',
   require 'plugins.noice',
   require 'plugins.harpoon',
   require 'plugins.multi-cursor',
   require 'plugins.which-key',
+  require 'plugins.toggleterm',
+  require 'plugins.hop',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

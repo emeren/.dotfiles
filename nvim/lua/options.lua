@@ -1,7 +1,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
+vim.opt.relativenumber = false
 vim.opt.list = false
 vim.opt.tabstop = 2
 vim.opt.cmdheight = 0
@@ -25,6 +26,8 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
+vim.opt.conceallevel = 1
+vim.opt_local.conceallevel = 1
 
 vim.opt.swapfile = false
 

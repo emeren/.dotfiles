@@ -12,10 +12,10 @@ return {
     vim.keymap.set('', 'F', function()
       hop.hint_words { direction = directions.BEFORE_CURSOR, current_line_only = true }
     end, { remap = true })
-    vim.keymap.set('', 't', function()
+    vim.keymap.set('', '<leader>t', function()
       hop.hint_words { current_line_only = false, hint_offset = -1 }
     end, { remap = true })
-    vim.keymap.set('', 'T', function()
+    vim.keymap.set('', '<leader>T', function()
       hop.hint_char1 { current_line_only = false, hint_offset = 1 }
     end, { remap = true })
 
