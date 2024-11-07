@@ -1,6 +1,6 @@
 
 rcmd - d : open -a "/Applications/TablePlus.app"
-rcmd - i : open -a "/Applications/Microsoft Teams (Work or School).app"
+rcmd - i : open -a "/Applications/Microsoft Teams.app"
 
 # IntelliJ IDEA or Visual Studio Code.app
 rcmd - c : open -a "/Applications/IntelliJ IDEA.app"
@@ -11,6 +11,9 @@ rcmd - g : open -a "/Applications/Fork.app"
 rcmd - b : open -a "/Applications/Arc.app"
 rcmd - o : open -a "/System/Library/CoreServices/Finder.app"
 rcmd - n : open -a "/Applications/Obsidian.app"
+shift + rcmd - b : open -a "/Applications/Google Chrome.app"
+
+
 
 cmd - 0x1E : yabai -m space --focus next 
 cmd - 0x21 : yabai -m space --focus prev 

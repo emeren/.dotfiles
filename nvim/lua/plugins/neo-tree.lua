@@ -49,6 +49,12 @@ return {
           ['H'] = 'set_root',
           ['f'] = 'show_file_details', -- File details
           ['l'] = 'open',
+          ['m'] = {
+            'move',
+            config = {
+              show_path = 'absolute', -- "none", "relative", "absolute"
+            },
+          },
           ['h'] = 'close_all_subnodes',
           ['n'] = { 'show_help', nowait = false, config = { title = 'Create new', prefix_key = 'n' } }, -- Mimic nnn dialog
           ['A'] = { 'add_directory', nowait = false },

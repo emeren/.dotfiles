@@ -11,6 +11,9 @@ return {
       -- Import lspconfig plugin
       local lspconfig = require 'lspconfig'
 
+      lspconfig.lsp_definitions = {
+        file_ignore_patterns = { 'index.d.ts' },
+      }
       -- Configure diagnostics
       vim.diagnostic.config {
         virtual_text = false, -- Disable inline text to avoid clutter
@@ -88,6 +91,25 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
       end
 
+      local function filter(arr, fn)
+        if type(arr) ~= 'table' then
+          return arr
+        end
+
+        local filtered = {}
+        for k, v in pairs(arr) do
+          if fn(v, k, arr) then
+            table.insert(filtered, v)
+          end
+        end
+
+        return filtered
+      end
+
+      local function filterReactDTS(value)
+        return string.match(value.uri, 'react/index.d.ts') == nil
+      end
+
       mason_lspconfig.setup_handlers {
 
         function(server_name)
@@ -95,28 +117,13 @@ return {
             capabilities = capabilities,
           }
         end,
+        -- ['textDocument/definition'] = function(err, result, method, ...)
+        --   if vim.tbl_islist(result) and #result > 1 then
+        --     local filtered_result = filter(result, filterReactDTS)
+        --     return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
+        --   end
         --
-        -- SVLET
-        -- ['svelte'] = function()
-        --   lspconfig['svelte'].setup {
-        --     capabilities = capabilities,
-        --     on_attach = function(client, bufnr)
-        --       vim.api.nvim_create_autocmd('BufWritePost', {
-        --         pattern = { '*.js', '*.ts' },
-        --         callback = function(ctx)
-        --           client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
-        --         end,
-        --       })
-        --     end,
-        --   }
-        -- end,
-        --
-        -- GRAPHQL
-        -- ['graphql'] = function()
-        --   lspconfig['graphql'].setup {
-        --     capabilities = capabilities,
-        --     filetypes = { 'graphql', 'gql', 'svelte', 'typescriptreact', 'javascriptreact' },
-        --   }
+        --   vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
         -- end,
         ['emmet_ls'] = function()
           lspconfig['emmet_ls'].setup {
@@ -136,5 +143,6 @@ return {
         end,
       }
     end,
+    vim.keymap.set('n', '<leader>aD', '<cmd>Telescope diagnostics<CR>', { desc = 'Show all project diagnostics' }),
   },
 }

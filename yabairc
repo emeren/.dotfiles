@@ -1,32 +1,10 @@
 #!/usr/bin/env sh
 
-#
-# for this to work you must configure sudo such that
-# it will be able to run the command without password
-#
-# see this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
-#
-# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-# sudo yabai --load-sa
-#
-#    adding animation ?!
-
-#    window_animation_frame_rate  120            \
-
-#
-##//DEBUG
-yabai -m config debug_output on
-
-#
-#
-#
+yabai -m signal --add event=dock_did_restart action="yabai -m rule --apply"
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-# global settings
-# active_window_border_color   0xff222222 \
-# normal_window_border_color   0xff222222    \
+yabai -m rule --apply
 
 yabai -m config                                 \
     mouse_follows_focus          on            \
@@ -61,15 +39,12 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 
-yabai -m rule --add app="^Microsoft Teams$" title="^Microsoft Teams Notification$" manage=off
-yabai -m rule --add app="^Ustawienia systemowe$" title="^Ustawienia systemowe$" manage=off
-yabai -m rule --add label="Microsoft Teams" app="^Microsoft Teams$" manage=off
+yabai -m rule --add label="^Ustawienia systemowe$" app="^Ustawienia systemowe$" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" manage=off
 yabai -m rule --add label="Dom" app="^Dom$" manage=off
 yabai -m rule --add label="DeepL" app="^DeepL$" manage=off
 yabai -m rule --add label="Fork" app="^Fork$" manage=off
 yabai -m rule --add label="Wiadomości" app="^Wiadomości" manage=off
-# yabai -m rule --add label="Slack" app="^Slack" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" manage=off
 yabai -m rule --add label="ColorSlurp" app="^ColorSlurp$" manage=off
 yabai -m rule --add label="macfeh" app="^macfeh$" manage=off
@@ -90,10 +65,7 @@ echo "yabai configuration loaded.."
 #
 # setup spaces
 #
-for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
-  yabai -m space --destroy 7
-done
-
+#yabai -m space 1 --label web
 function setup_space {
   local idx="$1"
   local name="$2"
@@ -108,23 +80,17 @@ function setup_space {
   yabai -m space "$idx" --label "$name"
 }
 
+setup_space 1 term
+setup_space 2 web
+setup_space 3 teams
+setup_space 4 code
 
-setup_space 1 emacs
-setup_space 2 code
-setup_space 3 web
-setup_space 4 social
-setup_space 5 media
-setup_space 6 other
+hyper - y : yabai --restart-service | yabai -m rule --apply
 
-# move some apps automatically to specific spaces
-# yabai -m rule --add app="^Code$" space=^1
-# yabai -m rule --add app="^Obsidian$" space=^1
-# yabai -m rule --add app="^Chrome$" space=^3
-# yabai -m rule --add app="^Slack$" space=^4
-# yabai -m rule --add app="^Youtube Music$" space=6
-# yabai -m rule --add app="^iTerm2$" space=5
+yabai -m rule --add app="^WezTerm$" space=^term
+yabai -m rule --add app="^Arc$" space=^web
+yabai -m rule --add app="^Microsoft Teams$" space=^teams
+yabai -m rule --add app="^IntelliJ IDEA$" space=^code
 
 
-
-# borders active_color=0xff999999 inactive_color=0xff444444 width=5.0 &
 

@@ -44,7 +44,6 @@ return {
         map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
         map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
         map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-        map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
         map('n', '<leader>hD', function()
           gitsigns.diffthis '@'
         end, { desc = 'git [D]iff against last commit' })
@@ -62,7 +61,16 @@ return {
     },
     cmd = 'Neogit',
     config = true,
+    integrations = {
+      -- If enabled, use telescope for menu selection rather than vim.ui.select.
+      -- Allows multi-select and some things that vim.ui.select doesn't.
+      telescope = true,
+      diffview = true,
+      fzf_lua = nil,
+      mini_pick = nil,
+    },
     opts = {
+      kind = 'tab',
       signs = {
         -- { CLOSED, OPENED }
         section = { '-', '+' },
@@ -72,11 +80,24 @@ return {
     },
     lazy = true,
     event = 'VeryLazy',
+    preview_buffer = {
+      kind = 'tab',
+    },
+    commit_editor = {
+      kind = 'tab',
+    },
     keys = {
       {
         '<leader>gg',
         function()
-          require('neogit').open { kind = 'split_above' }
+          require('neogit').open { kind = 'tab' }
+        end,
+        desc = 'Neogit',
+      },
+      {
+        '<leader>hd',
+        function()
+          require('diffview').open()
         end,
         desc = 'Neogit',
       },

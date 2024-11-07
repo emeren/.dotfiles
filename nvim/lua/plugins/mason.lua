@@ -26,10 +26,11 @@ return {
           'html',
           'css_variables',
           'tailwindcss',
-          'svelte',
           'lua_ls',
           'emmet_ls',
           'prismals',
+          'json-lsp',
+          'eslint_d',
         },
       }
 
@@ -38,9 +39,6 @@ return {
         ensure_installed = {
           'prettierd', -- prettier formatter
           'stylua', -- lua formatter
-          'isort', -- python formatter
-          'black', -- python formatter
-          'pylint',
           'eslint_d',
         },
       }

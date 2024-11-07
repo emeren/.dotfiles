@@ -3,12 +3,13 @@ return {
     'akinsho/toggleterm.nvim',
     version = '*',
     opts = {
-      open_mapping = [[<c-\>]],
+      open_mapping = [[<C-,>]],
+      insert_mappings = false,
     },
     config = function()
       local Terminal = require('toggleterm.terminal').Terminal
       function _G.set_terminal_keymaps()
-        local opts = { buffer = 0 }
+        local opts = { buffer = 0, insert_mappings = false }
         vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
         vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
         vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
@@ -20,7 +21,7 @@ return {
 
       require('toggleterm').setup {
         terminal_mappings = false,
-        open_mapping = [[<leader>j]],
+        open_mapping = [[<C-,>]],
         vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()',
       }
 
@@ -36,13 +37,13 @@ return {
           self:resize(12)
         end,
       }
-      vim.keymap.set({ 't', 'n' }, '<leader>j', function()
+      vim.keymap.set({ 't', 'n' }, '<C-,>', function()
         horizontal:toggle()
       end)
-
-      vim.keymap.set({ 't', 'n' }, '<leader>]', function()
-        vertical:toggle()
-      end)
+      --
+      -- vim.keymap.set({ 'n' }, '<leader>]', function()
+      --   vertical:toggle()
+      -- end)
     end,
   },
 }

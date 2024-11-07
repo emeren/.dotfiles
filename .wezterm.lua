@@ -3,7 +3,8 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 config.colors = {
 	foreground = "#CBE0F0",
-	background = "#010a12",
+	background = "#011423",
+	cursor_bg = "#96CEB8",
 	selection_bg = "#033259",
 	selection_fg = "#CBE0F0",
 	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
@@ -35,7 +36,7 @@ config.keys = {
 	{ key = "p", mods = "CMD", action = wezterm.action({ SendKey = { key = "p", mods = "CTRL" } }) },
 	{ key = "a", mods = "CMD", action = wezterm.action({ SendKey = { key = "a", mods = "CTRL" } }) },
 	{ key = "c", mods = "CMD", action = wezterm.action({ SendKey = { key = "c", mods = "CTRL" } }) },
-	{ key = "/", mods = "CMD", action = wezterm.action({ SendKey = { key = ">", mods = "CTRL" } }) },
+	{ key = "/", mods = "CMD", action = wezterm.action({ SendKey = { key = "v", mods = "CTRL" } }) },
 	{ key = "x", mods = "CMD", action = wezterm.action({ SendKey = { key = "x", mods = "CTRL" } }) },
 	{ key = "s", mods = "CMD", action = wezterm.action({ SendKey = { key = "s", mods = "CTRL" } }) },
 }

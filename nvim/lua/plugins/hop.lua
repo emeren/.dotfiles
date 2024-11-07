@@ -12,12 +12,12 @@ return {
     vim.keymap.set('', 'F', function()
       hop.hint_words { direction = directions.BEFORE_CURSOR, current_line_only = true }
     end, { remap = true })
-    vim.keymap.set('', '<leader>t', function()
-      hop.hint_words { current_line_only = false, hint_offset = -1 }
-    end, { remap = true })
-    vim.keymap.set('', '<leader>T', function()
-      hop.hint_char1 { current_line_only = false, hint_offset = 1 }
-    end, { remap = true })
+    -- vim.keymap.set('', '<leader>t', function()
+    --   hop.hint_words { current_line_only = false, hint_offset = -1 }
+    -- end, { remap = true })
+    -- vim.keymap.set('', '<leader>T', function()
+    --   hop.hint_char1 { current_line_only = false, hint_offset = 1 }
+    -- end, { remap = true })
 
     vim.cmd 'hi HopNextKey guifg=#52AD70'
     vim.cmd 'hi HopNextKey1 guifg=#52AD70'

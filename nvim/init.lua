@@ -29,15 +29,12 @@ require('lazy').setup({
       },
     },
   },
-  {
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
+
   { 'mbbill/undotree' },
-  require 'plugins.obsidian',
   require 'theme',
+  -- require 'plugins.startup',
+  require 'plugins.todo-comments',
+  require 'plugins.obsidian',
   require 'plugins.git',
   require 'plugins.ai',
   require 'plugins.mason',
@@ -54,6 +51,7 @@ require('lazy').setup({
   require 'plugins.which-key',
   require 'plugins.toggleterm',
   require 'plugins.hop',
+  require 'plugins.nvim-tmux-navigation',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
