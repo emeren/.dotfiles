@@ -4,8 +4,8 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
+    vim.cmd.colorscheme 'catppuccin-mocha'
     local mocha = require('catppuccin.palettes').get_palette 'mocha'
-    -- require('base46').toggle_theme()
     require('catppuccin').setup {
       transparent_background = false,
       flavour = 'mocha',
@@ -19,6 +19,10 @@ return {
         mason = true,
         nvimtree = true,
         treesitter = true,
+        telescope = {
+          enabled = true,
+        },
+        noice = true,
         notify = false,
         mini = {
           enabled = true,
@@ -31,6 +35,7 @@ return {
       },
     }
   end,
+
   init = function()
     vim.cmd.colorscheme 'catppuccin'
   end,

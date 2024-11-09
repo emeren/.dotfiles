@@ -47,9 +47,8 @@ return {
     vim.keymap.set('n', '<C-f>', function()
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         previewer = false,
-        theme = 'dropdown',
-        width = 500,
-        height = 500,
+        width = 900,
+        height = 900,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
     vim.keymap.set('n', '<leader>s/', function()

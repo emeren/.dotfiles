@@ -12,6 +12,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.opt.formatoptions:remove { 'c', 'r', 'o' }
 
 require('lazy').setup {
+  'nvim-lua/plenary.nvim',
   require 'theme',
   'tpope/vim-sleuth',
   {
@@ -24,7 +25,6 @@ require('lazy').setup {
       }
     end,
   },
-  { 'nvim-lua/plenary.nvim' },
   require 'plugins.git',
   {
     'lewis6991/gitsigns.nvim',
@@ -51,13 +51,16 @@ require('lazy').setup {
   require 'plugins.conform',
   require 'plugins.nvim-cmp',
   require 'plugins.nvim-treesitter',
-  require 'plugins.neo-tree',
+  require 'plugins.oilnvim',
+  require 'plugins.mini',
   require 'plugins.mini',
   require 'plugins.noice',
+  require 'plugins.autopairs',
+  { 'tpope/vim-surround' },
   require 'plugins.harpoon',
   require 'plugins.multi-cursor',
   require 'plugins.which-key',
-  require 'plugins.toggleterm',
   require 'plugins.hop',
   require 'plugins.nvim-tmux-navigation',
+  require 'plugins.feline',
 }

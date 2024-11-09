@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 config.colors = {
 	foreground = "#CBE0F0",
-	background = "#011423",
+	background = "#1E1E2E",
 	cursor_bg = "#96CEB8",
 	selection_bg = "#033259",
 	selection_fg = "#CBE0F0",
@@ -18,22 +18,8 @@ config.window_padding = {
 	bottom = 2,
 }
 
--- config.wezterm.on("update-status", function(window, pane)
--- 	local overrides = window:get_config_overrides() or {}
--- 	if string.find(pane:get_title(), "^n-vi-m-.*") then
--- 		overrides.window_padding = {
--- 			left = 0,
--- 			right = 0,
--- 			top = 0,
--- 			bottom = 0,
--- 		}
--- 	else
--- 		overrides.window_padding = padding
--- 	end
--- 	window:set_config_overrides(overrides)
--- end)
-
 config.font = wezterm.font("JetBrains Mono", { weight = "Bold", italic = false })
+config.bold_brightens_ansi_colors = true
 config.font_size = 14
 config.line_height = 1.55
 config.max_fps = 144
@@ -41,10 +27,10 @@ config.max_fps = 144
 config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
-config.macos_window_background_blur = 10
+config.macos_window_background_blur = 50
 config.enable_kitty_keyboard = true
 config.macos_window_background_blur = 95
-config.window_background_opacity = 100
+config.window_background_opacity = 0.95
 
 config.keys = {
 	{ key = ".", mods = "CMD", action = wezterm.action({ SendKey = { key = ".", mods = "CTRL" } }) },

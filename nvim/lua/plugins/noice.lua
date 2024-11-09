@@ -78,13 +78,13 @@ return {
           },
           view = 'mini',
         },
-        {
-          filter = {
-            event = 'msg_show',
-            find = 'neo%-tree',
-          },
-          opts = { skip = true },
-        },
+        -- {
+        --   filter = {
+        --     event = 'msg_show',
+        --     find = 'neo%-tree',
+        --   },
+        --   opts = { skip = false },
+        -- },
         {
           filter = {
             event = 'msg_show',
