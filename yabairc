@@ -39,6 +39,7 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 
+yabai -m rule --add label="^Kalkulator$" app="^Kalkulator$" manage=off
 yabai -m rule --add label="^Ustawienia systemowe$" app="^Ustawienia systemowe$" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" manage=off
 yabai -m rule --add label="Dom" app="^Dom$" manage=off

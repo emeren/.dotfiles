@@ -14,6 +14,38 @@ return {
       lspconfig.lsp_definitions = {
         file_ignore_patterns = { 'index.d.ts' },
       }
+      local _border = 'single'
+
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+        virtual_text = {
+          spacing = 40,
+        },
+        border = 'rounded',
+      })
+
+      vim.lsp.handlers['textDocument/diagnostic'] = vim.lsp.with(vim.lsp.diagnostic.on_diagnostic, {
+        -- Enable underline, use default values
+        underline = true,
+        -- Enable virtual text, override spacing to 4
+        virtual_text = {
+          spacing = 40,
+        },
+        -- Use a function to dynamically turn signs off
+        -- and on, using buffer local variables
+        signs = function(namespace, bufnr)
+          return vim.b[bufnr].show_signs == true
+        end,
+        -- Disable a feature
+        update_in_insert = false,
+      })
+
+      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = _border,
+      })
+
+      vim.diagnostic.config {
+        float = { border = _border },
+      }
       -- Configure diagnostics
       vim.diagnostic.config {
         virtual_text = false, -- Disable inline text to avoid clutter
@@ -43,6 +75,9 @@ return {
           opts.desc = 'Show LSP definitions'
           keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
 
+          -- opts.desc = 'Show LSP implementations in a vertical split'
+          -- keymap.map('n', 'gs', ':vsplit | lua vim.lsp.buf.definition()', opts)
+
           opts.desc = 'Show LSP implementations'
           keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
 
@@ -70,7 +105,9 @@ return {
           -- Modify the 'K' key to open diagnostics in a floating window like in VSCode
           opts.desc = 'Show diagnostics in popup'
           local function show_diagnostics_and_hover()
-            vim.diagnostic.open_float {}
+            vim.diagnostic.open_float {
+              border = _border,
+            }
             vim.lsp.buf.hover()
           end
           vim.keymap.set('n', 'K', show_diagnostics_and_hover, { desc = 'Show diagnostics and hover information' })
@@ -79,6 +116,14 @@ return {
           keymap.set('n', '<leader>rs', ':LspRestart<CR>', opts)
         end,
       })
+
+      vim.diagnostic.config {
+        float = {
+          border = 'rounded', -- Możliwe wartości: 'single', 'double', 'solid', 'rounded', itp.
+          max_width = 60, -- Zwiększ lub zmniejsz szerokość okna dla efektu paddingu
+          max_height = 20, -- Dostosuj wysokość, aby uzyskać więcej przestrzeni
+        },
+      }
 
       -- Configure LSP capabilities for autocompletion
       local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -91,40 +136,17 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
       end
 
-      local function filter(arr, fn)
-        if type(arr) ~= 'table' then
-          return arr
-        end
-
-        local filtered = {}
-        for k, v in pairs(arr) do
-          if fn(v, k, arr) then
-            table.insert(filtered, v)
-          end
-        end
-
-        return filtered
-      end
-
-      local function filterReactDTS(value)
-        return string.match(value.uri, 'react/index.d.ts') == nil
-      end
-
       mason_lspconfig.setup_handlers {
-
-        function(server_name)
-          lspconfig[server_name].setup {
-            capabilities = capabilities,
-          }
-        end,
-        -- ['textDocument/definition'] = function(err, result, method, ...)
-        --   if vim.tbl_islist(result) and #result > 1 then
-        --     local filtered_result = filter(result, filterReactDTS)
-        --     return vim.lsp.handlers['textDocument/definition'](err, filtered_result, method, ...)
-        --   end
-        --
-        --   vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
-        -- end,
+        lspconfig['tailwindcss'].setup {
+          capabilities = capabilities,
+          border = 'rounded',
+        },
+        lspconfig['eslint'].setup {
+          capabilities = capabilities,
+        },
+        lspconfig['ts_ls'].setup {
+          capabilities = capabilities,
+        },
         ['emmet_ls'] = function()
           lspconfig['emmet_ls'].setup {
             capabilities = capabilities,
@@ -143,6 +165,10 @@ return {
         end,
       }
     end,
-    vim.keymap.set('n', '<leader>aD', '<cmd>Telescope diagnostics<CR>', { desc = 'Show all project diagnostics' }),
+    vim.keymap.set('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { desc = 'Show all project diagnostics' }),
+    vim.keymap.set('n', 'gw', function()
+      vim.cmd 'vsplit'
+      vim.lsp.buf.definition()
+    end, { noremap = true, silent = true }),
   },
 }

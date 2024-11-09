@@ -11,11 +11,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.opt.formatoptions:remove { 'c', 'r', 'o' }
 
-require('lazy').setup({
+require('lazy').setup {
+  require 'theme',
   'tpope/vim-sleuth',
-
-  { 'numToStr/Comment.nvim', opts = {} },
-
+  {
+    'numToStr/Comment.nvim',
+    dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+    opts = {},
+    config = function()
+      require('Comment').setup {
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      }
+    end,
+  },
+  { 'nvim-lua/plenary.nvim' },
   require 'plugins.git',
   {
     'lewis6991/gitsigns.nvim',
@@ -31,7 +40,6 @@ require('lazy').setup({
   },
 
   { 'mbbill/undotree' },
-  require 'theme',
   -- require 'plugins.startup',
   require 'plugins.todo-comments',
   require 'plugins.obsidian',
@@ -52,22 +60,4 @@ require('lazy').setup({
   require 'plugins.toggleterm',
   require 'plugins.hop',
   require 'plugins.nvim-tmux-navigation',
-}, {
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
-})
+}

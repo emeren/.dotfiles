@@ -23,6 +23,9 @@ return {
       mason_lspconfig.setup {
         -- list of servers for mason to install
         ensure_installed = {
+          'prettierd',
+          'tailwindcss-language-server',
+          'typescript-language-server',
           'html',
           'css_variables',
           'tailwindcss',
@@ -30,7 +33,8 @@ return {
           'emmet_ls',
           'prismals',
           'json-lsp',
-          'eslint_d',
+          'eslint-lsp',
+          'ts_ls',
         },
       }
 
@@ -39,7 +43,7 @@ return {
         ensure_installed = {
           'prettierd', -- prettier formatter
           'stylua', -- lua formatter
-          'eslint_d',
+          'eslint-lsp', -- eslint formatter
         },
       }
     end,

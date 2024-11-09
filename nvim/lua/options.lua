@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
+vim.opt.pumheight = 10
 vim.opt.relativenumber = false
 vim.opt.list = false
 vim.opt.tabstop = 2

@@ -1,12 +1,14 @@
 return {
   'catppuccin/nvim',
   name = 'catppuccin',
+  lazy = false,
   priority = 1000,
   config = function()
     local mocha = require('catppuccin.palettes').get_palette 'mocha'
+    -- require('base46').toggle_theme()
     require('catppuccin').setup {
-      transparent_background = true,
-      flavour = 'macchiato',
+      transparent_background = false,
+      flavour = 'mocha',
       default_integrations = true,
       integrations = {
         cmp = true,
@@ -20,12 +22,10 @@ return {
         notify = false,
         mini = {
           enabled = true,
-          indentscope_color = '',
         },
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       },
       custom_highlights = {
-        NormalFloat = { fg = mocha.text, bg = '#000000' },
+        NormalFloat = { fg = mocha.text, bg = '#181825' },
         ['@tag.builtin.tsx'] = { fg = mocha.peach },
         ['@tag.tsx'] = { fg = mocha.yellow },
       },

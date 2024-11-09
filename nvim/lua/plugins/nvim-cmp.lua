@@ -83,9 +83,12 @@ return {
           --   end, { 'i', 's' }),
         },
         sources = {
-          { name = 'luasnip' },
+          { name = 'buffer' },
+          { name = 'path' },
           { name = 'nvim_lsp' },
           { name = 'cmdline' },
+          { name = 'luasnip' },
+          { max_item_count = 10 },
         },
       }
     end,
